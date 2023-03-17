@@ -151,6 +151,9 @@ const sendMessage = async (input) => {
         };
     }
 
+    const { openaiApiKey } = clientOptions;
+    delete clientOptions.openaiApiKey;
+
     const data = {
         ...conversationData.value,
         message: input,
@@ -171,6 +174,7 @@ const sendMessage = async (input) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${openaiApiKey}`,
         },
         body: JSON.stringify(data),
     };
